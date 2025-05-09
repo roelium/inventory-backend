@@ -20,15 +20,13 @@ public class CategoryController {
     @PostMapping("")
     //@PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Response> createCategory(@RequestBody @Valid CategoryDTO categoryDTO) {
-        return ResponseEntity.ok(Response.builder()
-                .status(200)
-                .message("Category "+categoryDTO.getName().toUpperCase()+" Saved Successfully")
-                .build());
+        return ResponseEntity.ok(categoryService.createCategory(categoryDTO));
     }
 
 
     @GetMapping("")
     public ResponseEntity<Response> getAllCategories() {
+        log.info("Get all categories");
         return ResponseEntity.ok(categoryService.getAllCategories());
     }
 
